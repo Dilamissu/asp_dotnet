@@ -1,0 +1,11 @@
+TODOs
+1. change db connection string to .env file(expected before 5/11)
+2. add a logger with Microsoft.Extensions.Logging (expect before 5/11)
+3. add db exception or find one (expect before 5/12)
+4. finish user login request (add, remove, if possible check before 5/14)
+5. should have a check one db existance for safety (should progress with 4.)
+
+Issues Found
+
+1. MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host '' for user '' using method '' failed with message: Unknown database 'mvctest'
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'mvctest' (listed on 05/08)
