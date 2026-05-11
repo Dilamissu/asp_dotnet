@@ -1,6 +1,6 @@
-using asp_dotnet.Models;
+using DotnetPractice.Models;
 
-namespace asp_dotnet.Services;
+namespace DotnetPractice.Services;
 
 public static class PizzaService
 {

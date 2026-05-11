@@ -1,4 +1,4 @@
-namespace asp_dotnet.Models;
+namespace DotnetPractice.Models;
 
 public class User
 {

@@ -1,8 +1,8 @@
-using asp_dotnet.Models;
-using asp_dotnet.Services;
+using DotnetPractice.Models;
+using DotnetPractice.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace asp_dotnet.Controllers;
+namespace DotnetPractice.Controllers;
 
 [ApiController]
 [Route("[controller]")]

@@ -1,8 +1,8 @@
-using asp_dotnet.Models;
+using DotnetPractice.Models;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace asp_dotnet.Services.Auth;
+namespace DotnetPractice.Services.Auth;
 
 public static class UserService
 {

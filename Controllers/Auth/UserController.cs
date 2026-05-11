@@ -1,10 +1,10 @@
-using asp_dotnet.Models;
-using asp_dotnet.Services;
-using asp_dotnet.Services.Auth;
+using DotnetPractice.Models;
+using DotnetPractice.Services;
+using DotnetPractice.Services.Auth;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
-namespace asp_dotnet.Controllers.Auth;
+namespace DotnetPractice.Controllers.Auth;
 
 [ApiController]
 [Route("[controller]")]
