@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using DotnetPractice.Helper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+EnvReader.Load("./.env");
 
 var app = builder.Build();
 

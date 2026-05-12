@@ -12,34 +12,18 @@ public class UserController : ControllerBase
 {
     public UserController()
     {
-        UserService.Open();
     }
 
-    [HttpGet("test_open")]
-    public ActionResult OpenDB()
+    [HttpPost("test")]
+    public ActionResult Test(User user)
     {
-        try
-        {
-            UserService.Open();
-        }
-        catch (System.Exception)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError);
-        }
         return Ok();
     }
 
-    [HttpGet("test_close")]
-    public ActionResult CloseDB()
+    [HttpPost("register")]
+    public ActionResult Register(User user)
     {
-        try
-        {
-            UserService.Close();
-        }
-        catch (System.Exception)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError);
-        }
+        UserService.Register(user);
         return Ok();
     }
 }
