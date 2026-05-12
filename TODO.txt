@@ -1,10 +1,8 @@
 TODOs
-1. change db connection string to .env file(expected before 5/11)
-2. add a logger with Microsoft.Extensions.Logging (expect before 5/11)
-3. add db exception or find one (expect before 5/12)
-4. change db operation to seprate Interfaces (expect before 5/13)
-5. finish user login request (add, remove, if possible check before 5/14)
-6. should have a check one db existance for safety (should progress with 4.)
+1. add a logger with Microsoft.Extensions.Logging (expect before 5/11)
+2. add db exception or find one (expect before 5/12)
+3. finish user login request (add, remove, if possible check before 5/14)
+4. should have a check one db existance for safety (should progress with 3.)
 
 Issues Found
 
