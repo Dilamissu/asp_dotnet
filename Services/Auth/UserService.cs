@@ -17,4 +17,9 @@ public static class UserService
     {
         return userDB.RemoveUser(user);
     }
+
+    public static User? SearchAccount(string userID)
+    {
+        return userDB.SearchUser(userID);
+    }   
 }

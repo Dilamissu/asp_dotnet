@@ -26,4 +26,17 @@ public class UserController : ControllerBase
         UserService.Register(user);
         return Ok();
     }
+
+    [HttpPost("deleteAccount")]
+    public ActionResult DeleteAccount(User user)
+    {
+        UserService.DeleteAccount(user);
+        return Ok();
+    }
+
+    [HttpGet("searchAccount/{userID}")]
+    public ActionResult<User?> SearchAccount(string userID)
+    {
+        return UserService.SearchAccount(userID);
+    }  
 }

@@ -8,7 +8,7 @@ namespace DotnetPractice.Repository.Auth;
 
 public class UserRepository : IUserRepository
 {
-    private string connectString = "server=<dummy.server>;port=<dummy.port>;user id=<dummy.id>;password=<dummy.password>;database=mvctest;charset=utf8;";
+    private string connectString = "server=<dummy.server>;port=<dummy.port>;user id=<dummy.id>;password=<dummy.password>;database=mysql;charset=utf8;";
     private static MySqlConnection dbConnection = new MySqlConnection();
     public UserRepository()
     {
@@ -26,7 +26,7 @@ public class UserRepository : IUserRepository
         }
         else
         {
-            connectString = string.Format("server={0};port={1};user id={2};password={3};database=cvtest;charset=utf8;", server, port, userID, password);
+            connectString = string.Format("server={0};port={1};user id={2};password={3};database=mysql;charset=utf8;", server, port, userID, password);
             dbConnection.ConnectionString = connectString;
             System.Diagnostics.Debug.WriteLine($"connectString: {connectString}");
             checkDBExistance();
@@ -117,7 +117,7 @@ public class UserRepository : IUserRepository
         bool result = false;
         open();
     
-        string dbSQL = @$"INSERT INTO 'User'('Username', 'Password') VALUES ('{user.Username}', '{user.Password}')";
+        string dbSQL = @$"USE `dotnet_practice`; INSERT INTO User(user_id, username, password) VALUES ('temp_string_user_id', '{user.Username}', '{user.Password}');";
 
         MySqlCommand cmd = new MySqlCommand(dbSQL, dbConnection);
         if(cmd.ExecuteNonQuery() > 0)
@@ -141,7 +141,7 @@ public class UserRepository : IUserRepository
         bool result = false;
         open();
     
-        string dbSQL = @"DELETE FROM 'User' WHERE Username='{user.Username}'";
+        string dbSQL = @$"DELETE FROM User WHERE ssername='{user.Username}';";
 
         MySqlCommand cmd = new MySqlCommand(dbSQL, dbConnection);
         if(cmd.ExecuteNonQuery() > 0)
@@ -157,6 +157,31 @@ public class UserRepository : IUserRepository
         }
 
         close();
+        return result;
+    }
+
+    public User? SearchUser(string userID)
+    {
+        open();
+    
+        string dbSQL = @$"USE `dotnet_practice`; SELECT * FROM User WHERE user_id='{userID}';";
+        User? result = null;
+
+        MySqlCommand cmd = new MySqlCommand(dbSQL, dbConnection);
+        MySqlDataReader reader = cmd.ExecuteReader();
+
+        if(reader.Read())
+        {
+            result = new User(){Id = reader.GetInt16("id"), UserId = reader.GetString("user_id"), Username = reader.GetString("username"), Password = reader.GetString("password")};
+        }
+        else
+        {
+            result = null;
+        }
+
+        reader.Close();
+        close();
+
         return result;
     }
 }
