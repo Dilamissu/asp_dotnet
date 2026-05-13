@@ -28,7 +28,9 @@ public class UserRepository : IUserRepository
         {
             connectString = string.Format("server={0};port={1};user id={2};password={3};database=cvtest;charset=utf8;", server, port, userID, password);
             dbConnection.ConnectionString = connectString;
-            System.Diagnostics.Debug.WriteLine("connectString: {connectString}");
+            System.Diagnostics.Debug.WriteLine($"connectString: {connectString}");
+            checkDBExistance();
+            checkTableExistance();
         }
     }
     private bool CheckWhenOpen()
@@ -93,6 +95,22 @@ public class UserRepository : IUserRepository
             System.Diagnostics.Debug.WriteLine("DB closed");
         }
 
+    }
+    private void checkDBExistance()
+    {
+        open();
+        string dbSQL = @$"CREATE DATABASE IF NOT EXISTS `dotnet_practice`;";
+        MySqlCommand cmd = new MySqlCommand(dbSQL, dbConnection);
+        cmd.ExecuteNonQuery();
+        close();
+    }
+    private void checkTableExistance()
+    {
+        open();
+        string dbSQL = @$"USE `dotnet_practice`;CREATE TABLE IF NOT EXISTS User(id INT AUTO_INCREMENT PRIMARY KEY, user_id VARCHAR(32) NOT NULL, username VARCHAR(32) NOT NULL, password VARCHAR(32) NOT NULL);";
+        MySqlCommand cmd = new MySqlCommand(dbSQL, dbConnection);
+        cmd.ExecuteNonQuery();
+        close();
     }
     public bool AddUser(User user)
     {
